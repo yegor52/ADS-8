@@ -27,14 +27,15 @@ int Train::getLength() {
         currentWagon->light = true;
     }
 
-    for (;;) {
-        if (!currentWagon->next->light) {
-            currentWagon = currentWagon->next;
-            countOp++;
-            length++;
-            continue;
-        }
-        break;
+    while (currentWagon->next != first) {
+        currentWagon = currentWagon->next;
+        countOp++;
+        length++;
+    }
+
+    if (!currentWagon->light) {
+        currentWagon->light = true;
+        length++;
     }
 
     return length;
